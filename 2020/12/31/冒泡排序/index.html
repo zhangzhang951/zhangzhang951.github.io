@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>冒泡排序 | 张心蕊的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="冒泡排序123456789101112131415161718192021222324252627282930313233343536373839404142package com.xr.array;import java.util.Arrays;import java.util.Scanner;  &#x2F;*    冒泡排序：两层循环，外层冒泡轮数，里层依次比较    1.比较数组中两个相邻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="冒泡排序">
+<meta property="og:url" content="http://example.com/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/index.html">
+<meta property="og:site_name" content="张心蕊的博客">
+<meta property="og:description" content="冒泡排序123456789101112131415161718192021222324252627282930313233343536373839404142package com.xr.array;import java.util.Arrays;import java.util.Scanner;  &#x2F;*    冒泡排序：两层循环，外层冒泡轮数，里层依次比较    1.比较数组中两个相邻">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-12-31T06:07:58.775Z">
+<meta property="article:modified_time" content="2020-12-31T06:08:31.695Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="张心蕊的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张心蕊的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-冒泡排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2020-12-31T06:07:58.775Z" itemprop="datePublished">2020-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      冒泡排序
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">package com.xr.array;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">  &#x2F;*</span><br><span class="line">    冒泡排序：两层循环，外层冒泡轮数，里层依次比较</span><br><span class="line">    1.比较数组中两个相邻的元素，如果第一个数比第二个数大，我们就交换她们的位置</span><br><span class="line">    2.每一次比较，都会产生一个最大或者最小的数字</span><br><span class="line">    3.下一轮则可以少一次排序</span><br><span class="line">    4.依次循环，直到结束</span><br><span class="line">     *&#x2F;</span><br><span class="line">public class BubbleSort2 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;输入要排序的值，输入的每个值用逗号隔开&quot;);</span><br><span class="line">        Scanner input &#x3D; new Scanner(System.in);</span><br><span class="line">        String str &#x3D; input.nextLine();</span><br><span class="line">        String[] strArray &#x3D; str.split(&quot;,&quot;);</span><br><span class="line">        int[] array &#x3D; new int[strArray.length];</span><br><span class="line">        for (int i &#x3D; 0 ; i &lt; strArray.length ; i++)&#123;</span><br><span class="line">            array[i] &#x3D; Integer.parseInt(strArray[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;排序前的数组&quot;+ Arrays.toString(array));</span><br><span class="line">        sort(array);</span><br><span class="line">        System.out.println(&quot;排序后的数组&quot; + Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">  private static void sort(int[] array) &#123;</span><br><span class="line">  &#x2F;&#x2F;临时变量</span><br><span class="line">        int temp &#x3D; 0;</span><br><span class="line">        &#x2F;&#x2F;外层循环，判断要走多少次</span><br><span class="line">    for (int i &#x3D;0 ;i &lt;array.length-1;i++)&#123;</span><br><span class="line">        System.out.println(&quot;第&quot;+(i+1)+&quot;轮&quot;);</span><br><span class="line">        for (int j &#x3D; 0 ;j&lt; array.length-i-1;j++)&#123;</span><br><span class="line">            &#x2F;&#x2F;内层循环，比较两个数，如果第一个数比第二个数大，交换位置</span><br><span class="line">            if (array[j]&gt;array[j+1])&#123;</span><br><span class="line">                temp &#x3D; array[j];</span><br><span class="line">                array[j] &#x3D; array[j+1];</span><br><span class="line">                array[j+1] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;第&quot;+(j+1)+&quot;次&quot;+Arrays.toString(array));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" data-id="ckjcg8w95000050ul9bva8xq6" data-title="冒泡排序" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">策略模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">冒泡排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/31/hello-world1/">Hello World</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/31/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2020 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
