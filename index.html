@@ -73,6 +73,45 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-冒泡排序" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" class="article-date">
+  <time class="dt-published" datetime="2020-12-31T06:07:58.775Z" itemprop="datePublished">2020-12-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">冒泡排序</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">package com.xr.array;</span><br><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line">import java.util.Scanner;</span><br><span class="line">  &#x2F;*</span><br><span class="line">    冒泡排序：两层循环，外层冒泡轮数，里层依次比较</span><br><span class="line">    1.比较数组中两个相邻的元素，如果第一个数比第二个数大，我们就交换她们的位置</span><br><span class="line">    2.每一次比较，都会产生一个最大或者最小的数字</span><br><span class="line">    3.下一轮则可以少一次排序</span><br><span class="line">    4.依次循环，直到结束</span><br><span class="line">     *&#x2F;</span><br><span class="line">public class BubbleSort2 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        System.out.println(&quot;输入要排序的值，输入的每个值用逗号隔开&quot;);</span><br><span class="line">        Scanner input &#x3D; new Scanner(System.in);</span><br><span class="line">        String str &#x3D; input.nextLine();</span><br><span class="line">        String[] strArray &#x3D; str.split(&quot;,&quot;);</span><br><span class="line">        int[] array &#x3D; new int[strArray.length];</span><br><span class="line">        for (int i &#x3D; 0 ; i &lt; strArray.length ; i++)&#123;</span><br><span class="line">            array[i] &#x3D; Integer.parseInt(strArray[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;排序前的数组&quot;+ Arrays.toString(array));</span><br><span class="line">        sort(array);</span><br><span class="line">        System.out.println(&quot;排序后的数组&quot; + Arrays.toString(array));</span><br><span class="line">    &#125;</span><br><span class="line">  private static void sort(int[] array) &#123;</span><br><span class="line">  &#x2F;&#x2F;临时变量</span><br><span class="line">        int temp &#x3D; 0;</span><br><span class="line">        &#x2F;&#x2F;外层循环，判断要走多少次</span><br><span class="line">    for (int i &#x3D;0 ;i &lt;array.length-1;i++)&#123;</span><br><span class="line">        System.out.println(&quot;第&quot;+(i+1)+&quot;轮&quot;);</span><br><span class="line">        for (int j &#x3D; 0 ;j&lt; array.length-i-1;j++)&#123;</span><br><span class="line">            &#x2F;&#x2F;内层循环，比较两个数，如果第一个数比第二个数大，交换位置</span><br><span class="line">            if (array[j]&gt;array[j+1])&#123;</span><br><span class="line">                temp &#x3D; array[j];</span><br><span class="line">                array[j] &#x3D; array[j+1];</span><br><span class="line">                array[j+1] &#x3D; temp;</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;第&quot;+(j+1)+&quot;次&quot;+Arrays.toString(array));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/" data-id="ckjcg8w95000050ul9bva8xq6" data-title="冒泡排序" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-策略模式" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" class="article-date">
@@ -82,6 +121,16 @@
   </div>
   <div class="article-inner">
     
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
+    </h1>
+  
+
+      </header>
     
     <div class="e-content article-entry" itemprop="articleBody">
       
@@ -229,7 +278,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" data-id="ckjcfcev500012oul0q5gdy8t" data-title="" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/" data-id="ckjcfcev500012oul0q5gdy8t" data-title="策略模式" class="article-share-link">分享</a>
       
       
       
@@ -366,7 +415,11 @@
       <ul>
         
           <li>
-            <a href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">(no title)</a>
+            <a href="/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">冒泡排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
           </li>
         
           <li>
