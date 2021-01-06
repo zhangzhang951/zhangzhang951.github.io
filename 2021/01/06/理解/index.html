@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>对Okta的相关理解 | 张心蕊的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="对于Okta来说，想使用Okta API并控制用户对Okta的访问，需要使用到Authentication API。WEB API 使用这项API进行验证的时AuthenticationFilter列表，如果有多个则通过FilterScope来进行排序，最终形成AuthenticationFilter管道。 在对自己应用程序的访问进行控制时，使用OAuth 2.0和OpenID Connect协议">
+<meta property="og:type" content="article">
+<meta property="og:title" content="对Okta的相关理解">
+<meta property="og:url" content="http://example.com/2021/01/06/%E7%90%86%E8%A7%A3/index.html">
+<meta property="og:site_name" content="张心蕊的博客">
+<meta property="og:description" content="对于Okta来说，想使用Okta API并控制用户对Okta的访问，需要使用到Authentication API。WEB API 使用这项API进行验证的时AuthenticationFilter列表，如果有多个则通过FilterScope来进行排序，最终形成AuthenticationFilter管道。 在对自己应用程序的访问进行控制时，使用OAuth 2.0和OpenID Connect协议">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-01-06T14:19:48.272Z">
+<meta property="article:modified_time" content="2021-01-06T14:23:35.534Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="张心蕊的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">张心蕊的博客</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/01/06/%E7%90%86%E8%A7%A3/" class="article-date">
+  <time class="dt-published" datetime="2021-01-06T14:19:48.272Z" itemprop="datePublished">2021-01-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      对Okta的相关理解
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>对于Okta来说，想使用Okta API并控制用户对Okta的访问，需要使用到Authentication API。WEB API 使用这项API进行验证的时AuthenticationFilter列表，如果有多个则通过FilterScope来进行排序，最终形成AuthenticationFilter管道。</p>
+<p>在对自己应用程序的访问进行控制时，使用OAuth 2.0和OpenID Connect协议，OAuth 2.0协议是通过作用域访问令牌提供API安全性。OpenID Connect协议使我们可以检索和存储身份验证信息。OpenID Connect 通过提供身份验证和SSO拓展了OAuth 2.0.</p>
+<p>OAuth 2.0规范有四个角色：授权服务器、资源所有者、客户端、资源服务器，OAuth 2.0是给用户授予客户端的授权，每个OAuth授权都有对应的流程：首先是客户端向用户请求授权，如果用户进行提供，则授权授予给Okta，在授权有效的前提下，授权服务器返回访问令牌，附带刷新和ID令牌，客户端使用访问令牌访问用户。</p>
+<p>授权服务器是OAuth 2.0和OpenID Connect扩展的核心，每个都会有自己唯一一个发行和URI和令牌签名秘钥。授权服务器通过Web应用进行身份验证，并且获取用户的配置文件信息。不可以在不同的授权服务器之间混合令牌，在设计中，授权服务器之间是没有信任关系的。Okta有两种授权服务器，是组织授权服务器和自定义授权服务器。</p>
+<p>组织授权服务器，Okta的每个组织都有一个称为Org Authorization Server的内置授权服务器。可以使用组织授权服务器对OpenID Connect应用程序的Okta执行SSO，或者获取Okta API的访问令牌。</p>
+<p>自定义授权服务器可以用来创建和应用授权策略保护自己的API，API占用了自定义授权服务器铸造的访问令牌。Okta允许在单个Okta组织中创建多个自定义授权服务器，用来保护自己的资源服务器。在每一个授权服务器中，可以自定义OAuth 2.0范围、声明、访问策略以支持对API的授权。</p>
+<p>在选用授权服务器的时候，我们应该如何对授权服务器进行选择，如果是想基于OpenID Connect的应用程序添加SSO，或者要在Okta API中使用OAuth 2.0承载令牌，则可以使用组织授权服务器。只有组织服务器才能包括Okta API范围的访问令牌。如果应用程序具有其它范围，在何时授予范围等需求时，应该自己创建一个Custom Authorization Server。    </p>
+<p>OpenID Connect是建立在OAuth 2.0之上的身份验证标准，他增加了一个额外的令牌，叫ID令牌，他还可以标准化OAuth 2.0可以选择的区域，他使用了一些不同于原先的术语。在OpenID Connect和OAuth 2.0流中，高级流看起来相同，主要区别是在于OpenID Connect流程生成了一个ID令牌。</p>
+<p>对于我们选择OAuth 2.0流程是取决于我们的应用程序，根据不同的需求对流程的不同要求进行选择。对于授权码流，最适合未公开源代码的应用程序，因为密钥必须储存在客户端中，所以服务器端应用程序需要最终用户。因为它十分依赖于最终用户和Web浏览器的交互，所以要重定向用户，然后接收授权。PKCE的授权码流是对于移动应用程序，客户端无法储存密钥在应用程序中。<br>因为移动应用程序很容易被公开，所以我们可以通过操作在系统传递授权代码时，对其进行拦截。因此，我们为了确保代码流的安全性，就需要使用代码交换证明PKCE。也就是使用随机加密对代码进行加密，在验证程序中创建一个“代码质询”，并将质询与授权码请求一起传递过去。隐式流相对于一些不需保证客户端机密性的应用程序非常适用。在这个流程中，客户端不向token断电<br>发出请求，而是从authorize端点接收访问令牌，所以客户端必须与资源所有者的用户代理进行交互。隐式流是真对一些不信任客户端的应用程序，所以把它并不支持刷新令牌。资源所有者密码流可以用于同时控制客户端应用程序和与其交互的资源的用例。他要求客户端存储客户机密，并且资源所有者的凭据可以信任客户端。例如现在的FaceBook服务交互的FaceBook客户端应用<br>程序就是最常见的在线服务的客户端，他并不需要重定向，也不需要token端点的身份验证的调用。客户端凭据流是适用于没有最终用户的AKA客户端应用程序。该应用程序必须在服务器端，所以他必须收到客户端AKA的信任。凭据是经过硬编码，最终用户不能使用，在涉及到token身份验证的请求时，直接返回访问令牌。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2021/01/06/%E7%90%86%E8%A7%A3/" data-id="ckjliiiun00002gul8qzigtmc" data-title="对Okta的相关理解" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/01/06/%E7%BF%BB%E8%AF%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/01/01/github%20pages/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">GitHub Pages搭建博客详解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/01/">一月 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">十二月 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/01/06/%E7%BF%BB%E8%AF%91/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/06/%E7%90%86%E8%A7%A3/">对Okta的相关理解</a>
+          </li>
+        
+          <li>
+            <a href="/2021/01/01/github%20pages/">GitHub Pages搭建博客详解</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/31/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">冒泡排序</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/31/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">策略模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2021 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
